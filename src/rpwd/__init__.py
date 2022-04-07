@@ -16,7 +16,7 @@ __VERSION__ = '0.1.0'  # 脚本版本
 __UPDATE_TIME__ = '2022/04/07'  # 最近的更新时间
 __AUTHOR_NAME__ = 'Andy Meng'  # 作者
 __AUTHOR_EMAIL__ = 'andy_m129@163.com'  # 作者邮箱
-__URL__ = ''  # 说明文档
+__URL__ = 'https://juejin.cn/user/2875978147966855'  # 网址
 
 # =========================================== GLOBAL CONST ===========================================
 __TIMESTAMP__ = int(time.time())  # 当前时间戳，eg. 1617351251
