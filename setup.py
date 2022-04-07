@@ -34,9 +34,9 @@ setup(
     author_email='andy_m129@163.com',
     url='https://juejin.cn/user/2875978147966855',
     license='BSD',
-    packages=[NAME],
+    packages=[get_name(os.path.join('rpwd', '__init__.py'))],
     python_requires='>=3.9',
-    install_requires=[],
+    install_requires=['colorama', 'exifread'],
     entry_points={
         'console_scripts': [
             'rpwd=rpwd:main'
