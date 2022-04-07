@@ -1,40 +1,37 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-from io import open
-import os
 import re
-from setuptools import setup
 
 
-__NAME__ = 'rpwd'
+try:
+    from setuptools import setup
+except ImportError:
+    from distutils.core import setup
 
-
-# 加载 __init__.py 中定义的常量值
-def get_const(const_name):
-    file_path = f'{os.path.dirname(__file__)}/src/{__NAME__}/__init__.py'
-    with open(file_path) as stream:
-        file_content = stream.read()
-        pattern = f"^{const_name} = ['\"]([^'\"]*)['\"]"
-        match = re.search(pattern, file_content, re.M)
-        if match: return match.group(1)
-        raise RuntimeError("Unable to find version string.")
-
+with open("rpwd/__init__.py", "r") as file:
+    name = 'rpwd'
+    content = file.read()
+    version = re.search(r'^__VERSION__\s*=\s*[\'"]([^\'"]*)[\'"]', content, re.MULTILINE).group(1)
+    description = re.search(r'^__DESC__\s*=\s*[\'"]([^\'"]*)[\'"]', content, re.MULTILINE).group(1)
+    author = re.search(r'^__AUTHOR_NAME__\s*=\s*[\'"]([^\'"]*)[\'"]', content, re.MULTILINE).group(1)
+    author_email = re.search(r'^__AUTHOR_EMAIL__\s*=\s*[\'"]([^\'"]*)[\'"]', content, re.MULTILINE).group(1)
+    url = re.search(r'^__URL__\s*=\s*[\'"]([^\'"]*)[\'"]', content, re.MULTILINE).group(1)
 
 setup(
-    name=get_const('__NAME__'),
-    version=get_const('__VERSION__'),
-    description=get_const('__DESC__'),
-    author=get_const('__AUTHOR_NAME__'),
-    author_email=get_const('__AUTHOR_EMAIL__'),
-    url=get_const('__URL__'),
+    name=name,
+    version=version,
+    description=description,
+    author=author,
+    author_email=author_email,
+    url=url,
     license='BSD',
-    packages=[__NAME__],
+    packages=[name],
     python_requires='>=3.9',
     install_requires=['colorama', 'exifread'],
     entry_points={
         'console_scripts': [
-            f'{__NAME__}={__NAME__}:main'
+            f'{name}={name}:main'
         ]
     }
 )
