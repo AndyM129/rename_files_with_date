@@ -9,18 +9,18 @@ try:
 except ImportError:
     from distutils.core import setup
 
-with open("rpwd/__init__.py", "r") as file:
-    content = file.read()
-    name = 'rpwd'
-    full_name = re.search(r'^__FULL_NAME__\s*=\s*[\'"]([^\'"]*)[\'"]', content, re.MULTILINE).group(1).replace(' ', '_').lower()
-    version = re.search(r'^__VERSION__\s*=\s*[\'"]([^\'"]*)[\'"]', content, re.MULTILINE).group(1)
-    description = re.search(r'^__DESC__\s*=\s*[\'"]([^\'"]*)[\'"]', content, re.MULTILINE).group(1)
-    author = re.search(r'^__AUTHOR_NAME__\s*=\s*[\'"]([^\'"]*)[\'"]', content, re.MULTILINE).group(1)
-    author_email = re.search(r'^__AUTHOR_EMAIL__\s*=\s*[\'"]([^\'"]*)[\'"]', content, re.MULTILINE).group(1)
-    url = re.search(r'^__URL__\s*=\s*[\'"]([^\'"]*)[\'"]', content, re.MULTILINE).group(1)
+with open("amk/rfwd/consts.py", "r") as stream:
+    content = stream.read()
+    name = re.search(r'^NAME\s*=\s*[\'"]([^\'"]*)[\'"]', content, re.MULTILINE).group(1)
+    shortcut = re.search(r'^SHORTCUT\s*=\s*[\'"]([^\'"]*)[\'"]', content, re.MULTILINE).group(1).replace(' ', '_').lower()
+    version = re.search(r'^VERSION\s*=\s*[\'"]([^\'"]*)[\'"]', content, re.MULTILINE).group(1)
+    description = re.search(r'^DESC\s*=\s*[\'"]([^\'"]*)[\'"]', content, re.MULTILINE).group(1)
+    author = re.search(r'^AUTHOR_NAME\s*=\s*[\'"]([^\'"]*)[\'"]', content, re.MULTILINE).group(1)
+    author_email = re.search(r'^AUTHOR_EMAIL\s*=\s*[\'"]([^\'"]*)[\'"]', content, re.MULTILINE).group(1)
+    url = re.search(r'^GIT_URL\s*=\s*[\'"]([^\'"]*)[\'"]', content, re.MULTILINE).group(1)
 
-with open("README.md", "r") as fd:
-    long_description = fd.read()
+with open("README.md", "r") as stream:
+    long_description = stream.read()
 
 setup(
     name=name,
@@ -34,11 +34,12 @@ setup(
     license='GNU General Public License v3.0',
     packages=[name],
     python_requires='>=3.9',
-    install_requires=['colorama', 'exifread'],
+    install_requires=['colorama'],
     entry_points={
         'console_scripts': [
             f'{name}={name}:main',
-            f'{full_name}={name}:main',
+            f'{name.replace(".", "_")}={name}:main',
+            f'{shortcut}={name}:main',
         ]
     }
 )

@@ -1,4 +1,4 @@
-# Rename Photos With Date
+# Rename Files With Date
 
 ## 背景
 
@@ -11,7 +11,7 @@
 
 
 
-因此，我就写了这个工具：读取照片的拍摄时间，将其重命名，以便【在以标题排序显示时  是符合预期的】
+因此，我就写了这个工具：读取文件的创建时间（照片则是拍摄时间），将其重命名，以便【在以标题排序显示时  是符合预期的】
 
 为了避免命名重复，所以命名规则为「年月日时分秒+3位随机数，共15位数字」，示例如下：
 
@@ -35,7 +35,7 @@
 可通过如下命令 快速安装：
 
 ```shell
-$ pip install rpwd
+$ pip install amk.rename_files_with_date
 ```
 
 
@@ -45,8 +45,8 @@ $ pip install rpwd
 ### 查看说明
 
 ```shell
-$ rpwd -h
-usage: rpwd [-h] [-d] [-v] [-l] path
+$ rfwd -h
+usage: rfwd [-h] [-d] [-v] [-l] path
 
 Rename Photos With Date
 
@@ -65,7 +65,7 @@ optional arguments:
 ### 查看将要执行的操作
 
 ```shell
-$ rpwd ./photos -l
+$ rfwd ./photos -l
 ```
 
 ![](https://gitee.com/AndyM129/ImageHosting/raw/master/images/202204072105220.png)
@@ -75,7 +75,7 @@ $ rpwd ./photos -l
 或是指定 `-v` 以查看很多信息：
 
 ```shell
-$ rpwd ./photos -lv
+$ rfwd ./photos -lv
 ```
 
 ![](https://gitee.com/AndyM129/ImageHosting/raw/master/images/202204072108092.png)
@@ -86,7 +86,7 @@ $ rpwd ./photos -lv
 
 ```shell
 # 可追加 -v、-d 以启用详情、调试模式，以查看更多信息
-$ rpwd ./photos
+$ rfwd ./photos
 ```
 
 ![](https://gitee.com/AndyM129/ImageHosting/raw/master/images/202204072109468.png)
